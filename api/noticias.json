@@ -1,0 +1,43 @@
+[
+    {
+        "titulo": "Gin\u00f3bili sigue rompiendo r\u00e9cords",
+        "sinopsis": "Emanuel 'Manu' Gin\u00f3bili viene rompiendo algunos r\u00e9cords tanto de su equipo como de la liga.",
+        "texto": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam magni facilis aliquam voluptate minima tempore earum dolorum soluta harum eos est, quas alias nam eaque perferendis labore maxime! Tempora, minus!",
+        "imagen": "manu.jpg",
+        "alt": "Manu Gin\u00f3bili"
+    },
+    {
+        "titulo": "Houston Rockets lidera la conferencia",
+        "sinopsis": "De la mano de James Harden, los Rockets se apuntan como candidatos para ganar los playoff.",
+        "texto": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam magni facilis aliquam voluptate minima tempore earum dolorum soluta harum eos est, quas alias nam eaque perferendis labore maxime! Tempora, minus!",
+        "imagen": "rockets-logo.jpg",
+        "alt": "Houston Rockets Logo"
+    },
+    {
+        "titulo": "Toronto Raptors queda primero en el Este",
+        "sinopsis": "Los Raptors de Lowry y DeRozan se quedan con el primer lugar de su conferencia.",
+        "texto": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam magni facilis aliquam voluptate minima tempore earum dolorum soluta harum eos est, quas alias nam eaque perferendis labore maxime! Tempora, minus!",
+        "imagen": "raptors-logo.jpg",
+        "alt": "Toronto Raptors Logo"
+    },
+    {
+        "titulo": "Denver se queda corto por un partido",
+        "sinopsis": "Qued\u00f3 a una victoria y media de clasificar a los playoff.",
+        "texto": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam magni facilis aliquam voluptate minima tempore earum dolorum soluta harum eos est, quas alias nam eaque perferendis labore maxime! Tempora, minus!",
+        "imagen": "nuggets-logo.jpg",
+        "alt": "Denver Nuggets Logo"
+    },
+    {
+        "titulo": "Soy una nueva noticia :D",
+        "sinopsis": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi eum nam ab debitis quasi hic commodi dolorem fugiat assumenda error molestias, similique sequi pariatur magni soluta. Aliquid officia, commodi iusto!",
+        "texto": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi eum nam ab debitis quasi hic commodi dolorem fugiat assumenda error molestias, similique sequi pariatur magni soluta. Aliquid officia, commodi iusto!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi eum nam ab debitis quasi hic commodi dolorem fugiat assumenda error molestias, similique sequi pariatur magni soluta. Aliquid officia, commodi iusto!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi eum nam ab debitis quasi hic commodi dolorem fugiat assumenda error molestias, similique sequi pariatur magni soluta. Aliquid officia, commodi iusto!",
+        "alt": "Lorem ipsum dolor sit amet :D"
+    },
+    {
+        "titulo": "Los gatos comen ratones",
+        "sinopsis": ":D",
+        "texto": "lalalalalalalalala",
+        "alt": "Gato cenando.",
+        "imagen": "gato.jpg"
+    }
+]
