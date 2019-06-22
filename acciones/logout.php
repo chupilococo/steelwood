@@ -13,4 +13,4 @@ session_start();
 unset($_SESSION['id_usuario'], $_SESSION['email']);
 
 // 3. Redireccionamos.
-header('Location: ../index.php?s=home');
+header('Location: ../index_santiago.php?s=home');

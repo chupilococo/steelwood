@@ -25,10 +25,10 @@ $exito = eliminarNoticia($db, $id);
 
 if($exito) {
     $_SESSION['mensaje'] = "La noticia fue eliminada exitosamente.";
-    header('Location: ../index.php?s=noticias');
+    header('Location: ../index_santiago.php?s=noticias');
 } else {
     $_SESSION['mensaje'] = "Error al tratar de eliminar la noticia <b>" . $id . "</b>.";
-    header('Location: ../index.php?s=noticias');
+    header('Location: ../index_santiago.php?s=noticias');
 }
 
 

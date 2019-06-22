@@ -1,0 +1,17 @@
+.productos{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    place-items: center;
+    grid-gap: 1em;
+}
+
+.productos h2 {
+    font-size: 2em;
+    grid-column: 1/4;
+    text-transform: uppercase;
+    border-bottom: var(--bg-clr-nav) solid .3em ;
+}
+
+.productos .producto {
+    display: inline-block;
+}

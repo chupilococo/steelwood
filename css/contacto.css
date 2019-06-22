@@ -1,0 +1,46 @@
+.contacto{
+    display: grid;
+    grid-template-columns:2em 1fr 2em ;
+    grid-auto-rows: max-content;
+    border-radius: .5em;
+}
+
+.contacto h2{
+    text-align: center;
+    margin: 1em 0;
+    grid-column: 2/3;
+}
+
+.contacto form{
+    display: grid;
+    grid-auto-rows: max-content;
+    grid-column: 2;
+    padding-bottom: 2em;
+}
+
+.contacto form .formInput, .contacto form button{
+    margin: 1vh 0;
+    font-size: 1.5em;
+    padding: .5em ;
+    border-radius: 10px;
+    border-style: none;
+}
+
+.contacto form .formInput:focus{
+    background-color: #fff89b;
+}
+
+.contacto form textarea{
+    height: 15em ;
+    resize: none;
+    white-space: pre-wrap;
+}
+
+.contacto form button{
+    color: white;
+    background-color: var(--bg-clr-nav);
+    box-shadow: #5c5c5c 5px 5px 5px;
+}
+.contacto form button:active{
+    box-shadow: 0 0 0;
+}

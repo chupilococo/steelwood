@@ -3,7 +3,7 @@ require 'conexion.php';
 require_once "../Mail.php";
 
 if(empty($_POST["email"])):
-    header("Location: ../index.php?s=recuperar_clave");
+    header("Location: ../index_santiago.php?s=recuperar_clave");
     die();
 endif;
 
@@ -19,7 +19,7 @@ $rta = mysqli_query($db, $query);
 
 // El email no existe en mi db
 if(mysqli_num_rows($rta) == 0):
-    header("Location: ../index.php?s=recuperar_clave");
+    header("Location: ../index_santiago.php?s=recuperar_clave");
     die();
 endif;
 
@@ -70,7 +70,7 @@ if($rta):
                     <div style="width: 75%;margin:auto; padding:15px;font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
                     
                         <h1 style="font-size: 18px;">¿Te olvidaste tu clave?</h1>
-                        <p>No te preocupes, nosotros nos vamos a encargar de que puedas volver a entrar. Solamente hacé click en el siguiente <b><a href="http://localhost/proyecto/index.php?s=cambiar_clave&email=$email&token=$token">link</a></b> </p>
+                        <p>No te preocupes, nosotros nos vamos a encargar de que puedas volver a entrar. Solamente hacé click en el siguiente <b><a href="http://localhost/proyecto/index_santiago.php?s=cambiar_clave&email=$email&token=$token">link</a></b> </p>
                     
                         <p style="margin-top:50px;margin-bottom:0;">Muchas gracias</p>
                         <p style="font-size:12px;margin-top:0">Saraza Basket</p>
@@ -90,18 +90,18 @@ MENSAJE;
 
     // Tratamos de enviar el email.
     if(mail($destinatario, $asunto, $cuerpo, $headers)) {
-        header("Location: ../index.php?s=exito-email");
+        header("Location: ../index_santiago.php?s=exito-email");
         exit;
     } else {
         // Server posta.
 //        $_SESSION['error'] = "El email no pudo ser enviado.";
-//        header("Location: ../index.php?s=recuperar_clave");
+//        header("Location: ../index_santiago.php?s=recuperar_clave");
 //        exit;
         
         // Para testear.
         // Guardamos el email en un archivo de texto.
         file_put_contents('emails/' . time() . "_email-recuperar-password.html", $cuerpo);
-        header("Location: ../index.php?s=exito-email");
+        header("Location: ../index_santiago.php?s=exito-email");
         exit;
     }
 
@@ -152,10 +152,10 @@ MENSAJE
     $email = new Mail($datos);
     
     if($email):
-        header("Location: ../index.php");
+        header("Location: ../index_santiago.php");
         die();
     else:
-        header("Location: ../index.php?s=recuperar_clave");
+        header("Location: ../index_santiago.php?s=recuperar_clave");
         die();
     endif;*/
 

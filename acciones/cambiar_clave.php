@@ -30,7 +30,7 @@ DELETE;
 
     // Si actualicé el usuario y eliminé el token del usuario en password_resets...
     if($rta):
-        header("Location: ../index.php?s=login");
+        header("Location: ../index_santiago.php?s=login");
         die();
     endif;
 endif;

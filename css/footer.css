@@ -1,0 +1,10 @@
+footer{
+    display: grid;
+    position:sticky;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 5vh;
+    background-color: var(--bg-clr-nav);
+    place-content: center;
+}

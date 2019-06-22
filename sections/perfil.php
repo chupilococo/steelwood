@@ -2,7 +2,7 @@
 // Como estamos en la sección del perfil, verificamos que
 // solo usuarios autenticados puedan ingresar.
 /*if(!isset($_SESSION['id_usuario']) || empty($_SESSION['id_usuario'])) {
-    header('Location: index.php?s=login');
+    header('Location: index_santiago.php?s=login');
     exit;
 }*/
 require 'libraries/data-usuarios.php';

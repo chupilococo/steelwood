@@ -423,6 +423,7 @@ Panel de Administración
 
     #home-noticias .noticias-item {
         width: 100%;
+        text-wrap: initial;
     }
 
     #form-alta {
@@ -436,8 +437,10 @@ Panel de Administración
     }
 
     .noticias-item_content {
+        background-color: var(--bg-clr-main);
         max-width: 650px;
         margin: auto;
+        text-wrap: revert;
     }
     
     .noticias-item_imagen {

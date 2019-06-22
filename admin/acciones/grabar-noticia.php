@@ -6,7 +6,7 @@ session_start();
 // acá.
 /*if(!isset($_SESSION['id_usuario']) || empty($_SESSION['id_usuario'])) {
     $_SESSION['mensaje'] = "Tenés que iniciar sesión para poder crear noticias.";
-    header('Location: ../index.php?s=noticias');
+    header('Location: ../index_santiago.php?s=noticias');
     exit;
 }*/
 require '../../libraries/data-usuarios.php';
@@ -67,7 +67,7 @@ if(count($errores) !== 0) {
     $_SESSION['errores'] = $errores;
     // Pasamos también los datos.
     $_SESSION['old_data'] = $_POST;
-    header('Location: ../index.php?s=nueva-noticia');
+    header('Location: ../index_santiago.php?s=nueva-noticia');
     exit;
 }
 
@@ -99,12 +99,12 @@ if($exito) {
         // mysqli_insert_id($conexion)
         // Retorna el último id auto-generado por la
         // base de datos.
-        header('Location: ../index.php?s=noticias');
+        header('Location: ../index_santiago.php?s=noticias');
     } else {
         echo "Error :(";
     }
 } else {
-//    header('Location: ../index.php?s=noticias');
+//    header('Location: ../index_santiago.php?s=noticias');
     echo "Error :(";
 }
 

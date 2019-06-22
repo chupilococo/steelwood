@@ -1,0 +1,78 @@
+@keyframes heroanimation {
+    0%,100%{
+        background-color: var(--bg-clr-nav);
+    }
+    20%{
+        background-color: var(--bg-clr-nav);
+    }
+    40%{
+        background-color: var(--bg-clr-nav);
+    }
+    60%{
+        background-color: var(--bg-clr-nav);
+    }
+    80%{
+        background-color: var(--bg-clr-nav);
+    }
+
+    0%,15%{
+        left: 0;
+        right: 98%;
+        bottom: 0;
+        top: 0;
+    }
+    20%{
+        right: 0;
+        bottom: 0;
+    }
+    26%{
+        bottom: 0;
+        top: 0;
+    }
+    50%{
+        top:0;
+        bottom: 94%;
+        right: 0;
+    }
+    70%{
+        left: 0;
+        right: 0;
+        bottom: 94%;
+        top: 0;
+    }
+    74%,80%{
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+    }
+    81%,100%{
+        left: 98%;
+        right: 0;
+        bottom: 0;
+        top: 0;
+    }
+}
+
+.hero{
+    position: relative;
+}
+.hero h2{
+    padding: 1em;
+    display: grid;
+    place-items: center;
+    /*height: 4em;*/
+    position: relative;
+    z-index: 1;
+}
+.hero h2::before{
+    border-radius: 5px;
+    z-index: -1;
+    left: 0;
+    right: 0;
+    position: absolute;
+    content: '';
+    display: inline-block;
+    background-color: var(--bg-clr-nav);
+    animation: heroanimation 15s alternate infinite ;
+}

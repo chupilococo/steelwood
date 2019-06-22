@@ -53,7 +53,7 @@ if(count($errores) !== 0) {
         'nombre'    => $_POST['nombre'],
         'apellido'  => $_POST['apellido'],
     ];
-    header('Location: ../index.php?s=login');
+    header('Location: ../index_santiago.php?s=login');
     exit;
 }
 
@@ -85,7 +85,7 @@ if($id_usuario !== false) {
     // Marcamos como logueado al usuario.
     $_SESSION['id_usuario'] = $id_usuario;
     $_SESSION['email']      = $email;
-    header('Location: ../index.php?s=home');
+    header('Location: ../index_santiago.php?s=home');
 } else {
     echo "Error... :(";
 }

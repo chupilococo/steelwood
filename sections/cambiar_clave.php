@@ -1,22 +1,20 @@
 <?php
 
 if(empty($_GET["email"]) || empty($_GET["token"])):
-    header("Location: index.php");
+    header("Location: index_santiago.php");
     die();
 endif;
 
 $email = mysqli_real_scape_string($_GET["email"]);
 $token = mysqli_real_scape_string($_GET["token"]);
 
-$query = <<<SELECT
-        SELECT * FROM password_resets WHERE email = "$email" AND token = "$token";
-SELECT;
+|$query = "SELECT * FROM password_resets WHERE email = '$email' AND token = '$token';";
 
 $rta = mysqli_query($db, $query);
 
 
 if(mysqli_num_rows($rta) == 0):
-    header("Location: index.php");
+    header("Location: index_santiago.php");
     die();
 endif;
 

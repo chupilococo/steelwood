@@ -55,7 +55,7 @@ if(count($errores) !== 0) {
     $_SESSION['errores'] = $errores;
     // Pasamos también los datos.
     $_SESSION['old_data'] = $_POST;
-    header('Location: ../index.php?s=editar-noticia&id=' . $id_noticia);
+    header('Location: ../index_santiago.php?s=editar-noticia&id=' . $id_noticia);
     exit;
 }
 
@@ -96,10 +96,10 @@ if($exito) {
         unlink(__DIR__ . '/../../imgs/' . str_replace('.jpg', '-big.jpg', $_POST['imagen_actual']));
     }
     
-    header('Location: ../index.php?s=noticias');
+    header('Location: ../index_santiago.php?s=noticias');
 } else {
     $_SESSION['errores'] = ['db' => "Error al grabar en la base. Por favor, volvé a intentarlo más tarde."];
-    header('Location: ../index.php?s=editar-noticia&id' . $id_noticia);
+    header('Location: ../index_santiago.php?s=editar-noticia&id' . $id_noticia);
 }
 
 

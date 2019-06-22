@@ -29,12 +29,12 @@ if($id_usuario !== false) {
     // variable de sesión.
     $_SESSION['id_usuario'] = $id_usuario;
     $_SESSION['email']      = $email;
-    header('Location: ../index.php?s=home');
+    header('Location: ../index_santiago.php?s=home');
 } else {
     // El usuario es incorrecto...
     $_SESSION['errores'] = ["login" => 'Email y/o password incorrectos.'];
     $_SESSION['old_data'] = $_POST;
-    header('Location: ../index.php?s=login');
+    header('Location: ../index_santiago.php?s=login');
 }
 
 

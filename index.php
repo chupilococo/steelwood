@@ -1,72 +1,58 @@
 <?php
-// Iniciamos sesión.
-session_start();
-
-// Incluimos la conexión, para que ya quede creada en
-// las secciones.
-require 'acciones/conexion.php';
-
-// Lista de secciones permitidas.
-// Verificación por "Whitelist".
-$sectionsAvailable = ['home', 'login', 'noticias', 'leer-noticia', 'perfil', '404','recuperar_clave','cambiar_clave'];
-
-// Usando el operador de php 7: Null coalesce (??)
-// Null coalesce funciona de la siguiente manera:
-$section = $_GET['s'] ?? 'home';
-// Significa "Si $_GET['s'] existe y es un valor distinto
-// a null, usalo. Sino, usá el default a continuación."
+    session_start();
+    require 'acciones/conexion.php';
+    $sectionsAvailable = ['home', 'login', 'noticias', 'leer-noticia', 'perfil', '404','recuperar_clave','cambiar_clave'];
+    $section = $_GET['s'] ?? 'home';
 ?>
 <!DOCTYPE html>
-<html lang="es">
+    <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Saraza Basket :: Ranking de la temporada regular</title>
-    <link rel="stylesheet" href="css/estilos.css">
+    <meta charset="utf-8">
+    <meta lang="es">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/nav.css">
+    <link rel="stylesheet" type="text/css" href="css/hero.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <title>Carrito de Compras</title>
 </head>
 <body>
-    <header id="main-header">
-        <h1>Saraza Basket</h1>
-        <p>Enterate de todas las novedades sobre la NBA</p>
-    </header>
-    <nav id="main-nav">
+<header>
+    <h1><a href="?s=home" >SteelWood <i class="far fa-calendar-alt"></i></a></h1>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle">
+    <nav>
         <ul>
-            <li><a href="index.php?s=home">Home</a></li>
-            <li><a href="index.php?s=noticias">Noticias</a></li>
-            <li><a href="admin/index.php">Panel</a></li>
-        <?php
-        if(isset($_SESSION['id_usuario']) && !empty($_SESSION['id_usuario'])):
-        ?>
-<!--            <li><a href="index.php?s=crear-noticia">Crear noticia</a></li>-->
-            <li><a href="index.php?s=perfil"><?= $_SESSION['email'];?> (Ir a mi perfil)</a></li>
-        <?php
-        else:
-        ?>
-            <li><a href="index.php?s=login">Iniciar Sesión</a></li>
-        <?php
-        endif;
-        ?>
+            <li><a href="?s=contacto">Contacto</a></li>
+            <?php
+            if(isset($_SESSION['id_usuario']) && !empty($_SESSION['id_usuario'])):
+                ?>
+                <!--            <li><a href="index.php?s=crear-noticia">Crear noticia</a></li>-->
+                <li><a href="index.php?s=perfil"><?= $_SESSION['email'];?> (Ir a mi perfil)</a></li>
+            <?php
+            else:
+                ?>
+                <li><a href="index.php?s=login">Iniciar Sesión</a></li>
+            <?php
+            endif;
+            ?>
         </ul>
     </nav>
+    <label for="nav-toggle" class="nav-toggle-label">
+        <span></span>
+    </label>
+</header>
+<div class="content">
     <?php
-    // Acá va el contenido :)
-    // Capturamos por $_GET la sección que el usuario quiere
-    // cargar.
-    // Verificamos que la sección exista.
-    // in_array retorna true si el valor que buscamos existe
-    // en el array que le pasamos.
     if(in_array($section, $sectionsAvailable)) {
         require 'sections/' . $section . '.php';
     } else {
-        // Redireccionamos a una sección de "Not Found".
-        // Para redireccionar en php, tenemos la siguiente
-        // instrucción:
-        // header('Location: ruta-a-donde-lo-mandan.ext');
         header('Location: index.php?s=404');
     }
     ?>
-    <footer id="main-footer">
-        <p>&copy; Da Vinci - 2018</p>
-    </footer>
+</div>
+<footer>
+    <p>&copy;</p>
+</footer>
 </body>
 </html>

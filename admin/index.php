@@ -5,7 +5,7 @@ session_start();
 // Como estamos en la sección de admin, verificamos que
 // solo usuarios autenticados puedan ingresar.
 /*if(!isset($_SESSION['id_usuario']) || empty($_SESSION['id_usuario'])) {
-    header('Location: ../index.php?s=login');
+    header('Location: ../index_santiago.php?s=login');
     exit;
 }*/
 require '../libraries/data-usuarios.php';
@@ -45,11 +45,11 @@ $section = $_GET['s'] ?? 'home';
         <?php
         if(isset($_SESSION['id_usuario']) && !empty($_SESSION['id_usuario'])):
         ?>
-            <li><a href="../index.php?s=perfil"><?= $_SESSION['email'];?> (Ir a mi perfil)</a></li>
+            <li><a href="../index_santiago.php?s=perfil"><?= $_SESSION['email'];?> (Ir a mi perfil)</a></li>
         <?php
         else:
         ?>
-            <li><a href="../index.php?s=login">Iniciar Sesión</a></li>
+            <li><a href="../index_santiago.php?s=login">Iniciar Sesión</a></li>
         <?php
         endif;
         ?>
@@ -59,7 +59,7 @@ $section = $_GET['s'] ?? 'home';
     if(in_array($section, $sectionsAvailable)) {
         require 'sections/' . $section . '.php';
     } else {
-        header('Location: index.php?s=404');
+        header('Location: index_santiago.php?s=404');
     }
     ?>
     <footer id="main-footer">

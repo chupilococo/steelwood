@@ -24,7 +24,7 @@ $cantidad = 4;
 $inicio = ($cantidad * $p) - $cantidad;
 
 // Leemos las noticias, pasando la conexión (traída del
-// index.php).
+// index_santiago.php).
 $noticias = traerNoticias($db, $cantidad, $inicio, $b);
 $cantidadTotalDeNoticias = traerCantidadTotalDeNoticias($db, $b);
 

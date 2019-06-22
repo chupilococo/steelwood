@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css?family=Work+Sans:300,600');
+
+:root {
+    --bg-clr-main: #909090;
+    --bg-clr-nav: #00d6aa;
+}
+
+*,*::before,*::after{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    /*white-space: nowrap;*/
+}
+body{
+    min-height: 80vh;
+    position: relative;
+    margin: 0;
+    background: #222;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 400;
+    color:white;
+}
+
+pre{
+    white-space: pre-wrap;
+}
+
+.content {
+    color:white;
+    background-color: #333;
+    display: grid;
+    place-items: center;
+    height: 87vh;
+    margin-top: 3em;
+    overflow: auto;
+}
+
+.content section{
+    min-height: 80%;
+    width: 80vw;
+    display: grid;
+    place-items: center;
+    background-color: var(--bg-clr-main);
+}

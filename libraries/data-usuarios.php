@@ -10,7 +10,7 @@
 function redirectIfNotLogged($path = "../") {
     if(!isset($_SESSION['id_usuario']) || empty($_SESSION['id_usuario'])) {
         $_SESSION['mensaje'] = "Tenés que iniciar sesión para poder acceder a esta página.";
-        header('Location: ' . $path . 'index.php?s=login');
+        header('Location: ' . $path . 'index_santiago.php?s=login');
         exit;
     }
 }
