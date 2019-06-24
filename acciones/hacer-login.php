@@ -10,7 +10,7 @@ if(isset($_SESSION['backUrl'])){
     $back=$_SESSION['backUrl'];
     unset($_SESSION['backUrl']);
 }else{
-    $back='../index.php';
+    $back=prevurl();
 }
 
 // TODO: Validar...

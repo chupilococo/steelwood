@@ -1,49 +1,22 @@
 <?php
-// Incluimos las noticias.
-// Al incluir un archivo, si éste define variables o
-// funciones, van a quedar definidos en el archivo en el
-// que lo estoy incluyendo.
 require 'libraries/data-noticias.php';
-require 'libraries/helpers.php';
-
-// Capturamos el parámetro de búsqueda, si es que lo
-// hay.
+//require 'libraries/helpers.php';
 $b = $_GET['b'] ?? null;
 
 /**************************************
 Paginador
 **************************************/
-// Tomamos la página que nos pide el usuario, y si
-// no hay ninguna, asumimos que es la página 1.
 $p = $_GET['p'] ?? 1;
-// Definimos la cantidad de artículos que queremos
-// mostrar por página.
 $cantidad = 4;
-
-// Calculamos el registo de inicio.
 $inicio = ($cantidad * $p) - $cantidad;
-
-// Leemos las noticias, pasando la conexión (traída del
-// index_santiago.php).
-$noticias = traerProducto($db, $cantidad, $inicio, $b);
-$cantidadTotalDeNoticias = traerCantidadTotalDeNoticias($db, $b);
-
-// Calculamos la cantidad final de páginas.
-$cantidadPaginas = $cantidadTotalDeNoticias / $cantidad;
+$productos = traerProducto($db, $cantidad, $inicio, $b);
+$cantidadTotalDeProductos = traerCantidadTotalDeProductos($db, $b);
+$cantidadPaginas = $cantidadTotalDeProductos / $cantidad;
 ?>
 <main id="main-content">
     <section id="noticias" class="amplio">
         <section class="buscador">
-            <!-- 
-            A diferencia de los forms por POST, en
-            los forms por GET no podemos dejar
-            escrito un parámetro en el action.
-            Si lo hacemos, el formulario lo va a
-            eliminar al enviarse.
-            -->
             <form method="get" action="index.php" class="form-inline">
-                <!-- Para poder enviar la sección,
-                la agregamos en un campo hidden. -->
                 <input type="hidden" name="s" value="noticias">
                 <div class="fila-form">
                     <label for="b">Buscar</label>
@@ -54,31 +27,39 @@ $cantidadPaginas = $cantidadTotalDeNoticias / $cantidad;
         </section>
        
         <div>
-            <h2>Noticias</h2>
-            <p class="lead">Qué está pasando.</p>
+            <h2>Productos</h2>
+            <p class="lead">Esto es lo que hacemos.</p>
         </div>
-        <?php
-        foreach($noticias as $unaNoticia):
-        ?>
-        <article class="noticias-item">
-            <a class="noticias-item_link" href="index.php?s=leer-noticia&id=<?= $unaNoticia['id_noticia'];?>">
-                <div class="noticias-item_content">
-                    <h3><?= resaltar($unaNoticia['titulo'], $b);?></h3>
-                    <p><?= resaltar($unaNoticia['sinopsis'], $b);?></p>
-                </div>
-                <picture class="noticias-item_imagen">
-                    <source srcset="imgs/<?= str_replace('.jpg', '-big.jpg', $unaNoticia['imagen']);?>" media="all and (min-width: 46.875em)">
-                    <img src="imgs/<?= $unaNoticia['imagen'];?>" alt="<?= $unaNoticia['titulo'];?>">
-                </picture>
-            </a>
-        </article>
-        <?php
-        endforeach;
-        ?>
-        
-        <!-- PAGINADOR -->
+
+        <div class="productos-wrapper">
+            <?php
+            foreach($productos as $producto):
+                ?>
+                <article class="producto">
+                    <a class="producto-item_link" href="index.php?s=ver-producto&id=<?= $producto['id_noticia'];?>">
+                        <div class="producto-item_content">
+                            <div class="producto-item_texto">
+                                <h3><?= $producto['titulo'];?></h3>
+                                <p><?= $producto['sinopsis'];?></p>
+                            </div>
+                            <picture class="producto-item_imagen">
+                                <source srcset="//unsplash.it/500/500" media="all and (min-width: 46.875em)">
+                                <img src="//unsplash.it/100/100" alt="<?= $producto['titulo'];?>">
+                                <!--
+                        <source srcset="imgs/<?= str_replace('.jpg', '-big.jpg', $producto['imagen']);?>" media="all and (min-width: 46.875em)">
+                        <img src="imgs/<?= $producto['imagen'];?>" alt="<?= $producto['titulo'];?>">
+                    -->
+                            </picture>
+                        </div>
+                    </a>
+                </article>
+            <?php
+            endforeach;
+            ?>
+        </div>
+
+
         <ul class="paginador">
-        <!-- Links de primero y anterior -->
         <?php
         if($p > 1):
         ?>
@@ -87,12 +68,9 @@ $cantidadPaginas = $cantidadTotalDeNoticias / $cantidad;
         <?php
         endif;
         ?>
-        
-        <!-- Lista de páginas -->
         <?php
         for($i = 1; $i <= $cantidadPaginas; $i++): 
         ?>
-            
             <?php
             if($i != $p):
             ?>
@@ -108,8 +86,6 @@ $cantidadPaginas = $cantidadTotalDeNoticias / $cantidad;
         <?php
         endfor;
         ?>
-        
-        <!-- Links de siguiente y última -->
         <?php
         if($p < $cantidadPaginas):
         ?>

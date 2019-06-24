@@ -1,6 +1,7 @@
 <?php
+require_once 'libraries/helpers.php';
 require 'libraries/data-usuarios.php';
-$_SESSION['backUrl']=$_SERVER['HTTP_REFERER'];
+$_SESSION['backUrl']=prevurl();
 
 redirectIfNotLogged();
 $user = traerUsuarioPorId($db, $_SESSION['id_usuario']);

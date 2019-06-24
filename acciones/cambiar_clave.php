@@ -1,12 +1,6 @@
 <?php
 session_start();
 require 'conexion.php';
-/*
-echo "<pre>";
-    print_r($_SERVER);
-echo "</pre>";
-die();
-*/
 if(empty($_POST["password"])):
     header("Location:".$_SERVER["HTTP_REFERER"]);
     die();

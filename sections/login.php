@@ -1,6 +1,11 @@
 <?php
+require_once 'libraries/helpers.php';
+require_once 'libraries/data-usuarios.php';
+$_SESSION['backUrl']=prevurl();
 
-$_SESSION['backUrl']=$_SERVER['HTTP_REFERER'];
+//echo str_replace($_SERVER['DOCUMENT_ROOT'],'',__DIR__.'/../index.php?s=perfil');
+
+redirectIfLogged(str_replace($_SERVER['DOCUMENT_ROOT'],'',__DIR__.'/../index.php?s=perfil'));
 
 if(isset($_SESSION['errores'])) {
     $errores = $_SESSION['errores'];
@@ -97,39 +102,10 @@ window.addEventListener('DOMContentLoaded', function() {
     
     for(var i = 0; i < togglePwdBtn.length; i++) {
         togglePwdBtn[i].addEventListener('click', function() {
-            // Capturamos el target del botón.
             var target = this.dataset.target;
-            // Buscamos a ese elemento.
             var campoPassword = document.getElementById(target);
-            
-            // Preguntamos el tipo de campo, y lo 
-            // cambiamos en consencuencia.
-            /*if(campoPassword.type == 'password') {
-                campoPassword.type = 'text';
-            } else {
-                campoPassword.type = 'password';
-            }*/
-            // Con un condicional ternario.
             campoPassword.type = campoPassword.type == 'password' ? 'text' : 'password';
         });
-        
-        /*togglePwdBtn[i].addEventListener('mousedown', function() {
-            // Capturamos el target del botón.
-            var target = this.dataset.target;
-            // Buscamos a ese elemento.
-            var campoPassword = document.getElementById(target);
-            
-            campoPassword.type = "text";
-        });
-        
-        togglePwdBtn[i].addEventListener('mouseup', function() {
-            // Capturamos el target del botón.
-            var target = this.dataset.target;
-            // Buscamos a ese elemento.
-            var campoPassword = document.getElementById(target);
-            
-            campoPassword.type = "password";
-        });*/
     }
 });
 </script>

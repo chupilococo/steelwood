@@ -21,11 +21,11 @@ $tags    = traerTagsDeProductoPorId($db, $id);
     ?>
     </div>
     <p class="lead"><?= $producto['sinopsis'];?></p>
-    
     <p><?= $producto['texto'];?></p>
 
 
 
+    <a href="index.php?s=agregar-carrito&id=<?= $id;?>">Agregar al Carrito</a>
 
 
 

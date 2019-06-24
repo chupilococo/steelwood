@@ -47,7 +47,7 @@ function traerProducto($db, $cantidad = null, $inicio = null, $busqueda = null) 
 /**
  *
  */
-function traerCantidadTotalDeNoticias($db, $busqueda = null) {
+function traerCantidadTotalDeProductos($db, $busqueda = null) {
     $consulta = "SELECT count(*) AS cantidad FROM noticias";
     
     $res = mysqli_query($db, $consulta);
@@ -180,7 +180,3 @@ function traerTagsDeProductoPorId($db, $id) {
     }
     return $salida;
 }
-
-
-
-

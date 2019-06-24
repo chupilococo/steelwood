@@ -1,7 +1,7 @@
 <?php
     session_start();
     require 'acciones/conexion.php';
-    $sectionsAvailable = ['home', 'login', 'noticias', 'ver-producto', 'perfil', '404','recuperar_clave','cambiar_clave'];
+    $sectionsAvailable = ['home','carrito', 'login', 'noticias', 'ver-producto', 'perfil', '404','recuperar_clave','cambiar_clave','agregar-carrito'];
     $section = $_GET['s'] ?? 'home';
 ?>
 <!DOCTYPE html>
@@ -24,10 +24,10 @@
     <nav>
         <ul>
             <li><a href="?s=contacto">Contacto</a></li>
+            <li><a href="?s=noticias">Productos</a></li>
             <?php
             if(isset($_SESSION['id_usuario']) && !empty($_SESSION['id_usuario'])):
                 ?>
-                <!--            <li><a href="index.php?s=crear-noticia">Crear noticia</a></li>-->
                 <li><a href="index.php?s=perfil"><?= $_SESSION['email'];?> (Ir a mi perfil)</a></li>
             <?php
             else:
@@ -36,6 +36,15 @@
             <?php
             endif;
             ?>
+            <li>
+                <a href="?s=carrito">
+                <i class="fas fa-shopping-cart"></i>
+                    Carrito
+                    <span>
+                        <?= (array_key_exists('carrito',$_SESSION))?count($_SESSION['carrito']):'';?>
+                    </span>
+                </a>
+            </li>
         </ul>
     </nav>
     <label for="nav-toggle" class="nav-toggle-label">
@@ -43,6 +52,19 @@
     </label>
 </header>
 <div class="content">
+
+    <?php
+        if (isset($_SESSION['mensaje'])):
+    ?>
+        <div class="mensaje">
+            <?=$_SESSION['mensaje']?>
+        </div>
+    <?php
+        unset($_SESSION['mensaje']);
+    endif;
+    ?>
+
+
     <?php
     if(in_array($section, $sectionsAvailable)) {
         require 'sections/' . $section . '.php';
