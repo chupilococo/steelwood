@@ -1,10 +1,10 @@
 <?php
 
-// Preguntamos si hay errores.
+$_SESSION['backUrl']=$_SERVER['HTTP_REFERER'];
+
 if(isset($_SESSION['errores'])) {
     $errores = $_SESSION['errores'];
     $oldData = $_SESSION['old_data'];
-    // unset permite eliminar una variable.
     unset($_SESSION['errores'], $_SESSION['old_data']);
 } else {
     $errores = [];

@@ -9,7 +9,7 @@
 // asignarle un valor en la definición de la función.
 
 /**
- * Retorna todas las noticias de la tabla "noticias", 
+ * Retorna todas los productos de la tabla "productos",
  * opcionalmente limitadas por $cantidad.
  *
  * @param mysqli $db La conexión a la base de datos de MySQL.
@@ -18,7 +18,7 @@
  * @param string|null $busqueda El texto a buscar. Default: null.
  * @return array
  */
-function traerNoticias($db, $cantidad = null, $inicio = null, $busqueda = null) {
+function traerProducto($db, $cantidad = null, $inicio = null, $busqueda = null) {
     // Consulta.
     $consulta = "SELECT * FROM noticias";
     
@@ -30,56 +30,30 @@ function traerNoticias($db, $cantidad = null, $inicio = null, $busqueda = null) 
     
     $consulta .= " ORDER BY fecha_publicacion DESC";
     
-    // Si cantidad es un número...
     if(is_numeric($cantidad)) {
-        // Seteamos que si no indicaron un inicio,
-        // empiece en 0.
         $inicio = $inicio ?? 0;
-        // Agregamos el LIMIT.
         $consulta .= " LIMIT " . $inicio . ", " . $cantidad;
     }
-    
-    // Ejecutamos.
     $res = mysqli_query($db, $consulta);
-    
-    // Armamos una matriz con todos los resultados.
     $salidaResultados = [];
     
-    // Recorremos todos los resultados.
     while($fila = mysqli_fetch_assoc($res)) {
-        // Hacemos un push. Es equivalente a usar 
-        // array_push.
         $salidaResultados[] = $fila;
     }
-    
-    /*echo "<pre>";
-    print_r($salidaResultados);
-    echo "</pre>";
-    die;*/
-    
-    // Retornamos la matriz.
     return $salidaResultados;
     
-    // Retorna los resultados.
-//    return $res;
 }
 
 /**
  *
  */
 function traerCantidadTotalDeNoticias($db, $busqueda = null) {
-    // Armamos la consulta.
     $consulta = "SELECT count(*) AS cantidad FROM noticias";
     
-    // Ejecutamos la consulta.
     $res = mysqli_query($db, $consulta);
     
-    // Como buscamos por una columna de grupo y
-    // no hay cláusula GROUP BY siempre vamos a 
-    // tener un único resultado.
     $fila = mysqli_fetch_assoc($res);
     
-    // Retornamos la cantidad total.
     return $fila['cantidad'];
 }
 
@@ -90,13 +64,8 @@ function traerCantidadTotalDeNoticias($db, $busqueda = null) {
  * @param int $id   El id de la noticia.
  * @return array|null
  */
-function traerNoticiaPorId($db, $id) {
-    // Sanitizamos el $id.
-    // IMPORTANTE: Protege contra SQL Injection.
+function traerProductoPorId($db, $id) {
     $id = mysqli_real_escape_string($db, $id);
-    
-    // Armamos la consulta.
-    // Paso 2, agregamos comillas a los valores.
     $consulta = "SELECT 
                     titulo, 
                     sinopsis, 
@@ -105,14 +74,7 @@ function traerNoticiaPorId($db, $id) {
                     imagen 
                 FROM noticias
                 WHERE id_noticia = '$id'";
-    
-    // Ejecutamos la consulta.
     $res = mysqli_query($db, $consulta);
-    
-    // Como buscamos por PK, solo puede haber un resultado.
-//    $fila = mysqli_fetch_assoc($res);
-//    return $fila;
-    
     return mysqli_fetch_assoc($res);
 }
 
@@ -125,23 +87,6 @@ function traerNoticiaPorId($db, $id) {
  * @return bool|mysqli_result
  */
 function grabarNoticia($db, $datos) {
-    // Opción A:
-    /*$id_usuario = mysqli_real_escape_string($db, $datos['id_usuario']);
-    $titulo = mysqli_real_escape_string($db, $datos['titulo']);
-    $sinopsis = mysqli_real_escape_string($db, $datos['sinopsis']);
-    $texto = mysqli_real_escape_string($db, $datos['texto']);
-    $imagen = mysqli_real_escape_string($db, $datos['imagen']);
-    
-    $consulta = "INSERT INTO noticias (id_usuario, titulo, sinopsis, texto, imagen)
-    VALUES (
-        '" . $id_usuario . "',
-        '" . $titulo . "',
-        '" . $sinopsis . "',
-        '" . $texto . "',
-        '" . $imagen . "'
-    )";*/
-    
-    // Opción B:
     $consulta = "INSERT INTO noticias (id_usuario, titulo, sinopsis, texto, imagen, fecha_publicacion)
     VALUES (
         '" . mysqli_real_escape_string($db, $datos['id_usuario']) . "',
@@ -151,11 +96,6 @@ function grabarNoticia($db, $datos) {
         '" . mysqli_real_escape_string($db, $datos['imagen']) . "',
         NOW()
     )";
-    // NOW() en MySQL retorna la fecha actual.
-    
-    // Como estamos haciendo un INSERT, query va
-    // true si se ejecuta con éxito, false de lo
-    // contrario.
     return mysqli_query($db, $consulta);
 }
 
@@ -169,25 +109,9 @@ function grabarNoticia($db, $datos) {
  * @return bool
  */
 function eliminarNoticia($db, $id) {
-    // Sanitizamos el id que llega por parámetro.
     $id = mysqli_real_escape_string($db, $id);
-    
-    // Eliminamos la noticia.
-    
-    // Primero, eliminamos la noticia de la tabla
-    // noticias_has_tags
-    // Si seteamos el ON DELETE en CASCADE, podemos
-    // omitir esta parte.
-    /*$consulta = "DELETE FROM noticias_has_tags
-                WHERE id_noticia = '$id'";
-    
-    mysqli_query($db, $consulta);*/
-    
-    // Armamos la consulta.
     $consulta = "DELETE FROM noticias
                 WHERE id_noticia = '$id'";
-    
-    // Ejecutamos la consulta.
     return mysqli_query($db, $consulta);
 }
 
@@ -200,44 +124,7 @@ function eliminarNoticia($db, $id) {
  * @return bool
  */
 function editarNoticia($db, $id, $data) {
-    // Sanitizamos los datos.
     $id = mysqli_real_escape_string($db, $id);
-//    $data['titulo'] = mysqli_real_escape_string($db, $data['titulo']);
-//    $data['sinopsis'] = mysqli_real_escape_string($db, $data['sinopsis']);
-//    $data['texto'] = mysqli_real_escape_string($db, $data['texto']);
-//    $data['imagen'] = mysqli_real_escape_string($db, $data['imagen']);
-    
-    // Manejo de la imagen, forma 1.
-    /*$consulta = "UPDATE noticias
-                SET titulo = '" . $data['titulo'] . "',
-                    sinopsis = '" . $data['sinopsis'] . "',
-                    texto = '" . $data['texto'] . "'";
-    
-    if(!empty($data['imagen'])) {
-        $consulta .= ",
-                    imagen = '" . $data['imagen'] . "'"
-    }
-    
-    $consulta .= " WHERE id_noticia = '" . $id . "'";*/
-    
-    // Manejo de la imagen, forma 2.
-    /*if(!empty($data['imagen'])) {
-        $imageSQL = ", imagen = '" . $data['imagen'] . "'";
-    } else {
-        $imageSQL = "";
-    }
-    
-    $consulta = "UPDATE noticias
-                SET titulo = '" . $data['titulo'] . "',
-                    sinopsis = '" . $data['sinopsis'] . "',
-                    texto = '" . $data['texto'] . "'
-                " . $imageSQL . "
-                WHERE id_noticia = '" . $id . "'";*/
-    
-    // Forma 3: creando la consulta dinámicamente.
-    // Esto lo podemos hacer siempre y cuando hayamos recibido
-    // los datos como un array, cuyos índices se llamen igual
-    // a las columnas que les corresponden.
     $camposSQL = [];
     
     foreach($data as $columna => $valor) {
@@ -247,27 +134,7 @@ function editarNoticia($db, $id, $data) {
     $consulta = "UPDATE noticias
                 SET " . implode(', ', $camposSQL) . "
                 WHERE id_noticia = '" . $id . "'";
-    
-    // implode() permite unir todos los items de un array
-    // en un string, unidos por un string de "pegamento".
-    // Recibe 2 argumentos:
-    // 1. "glue". String. El string con el que queremos pegar
-    //      los valores del array.
-    // 2. "array". Array. El array que contiene los valores a
-    //      unir.
-    /*echo implode(', ', $camposSQL);
-    echo "<hr>";
-    
-    echo "<pre>";
-    print_r($camposSQL);
-    echo "</pre>";*/
-    
-    
-    
-//    echo $consulta;
-    
-    return mysqli_query($db, $consulta);
-//    return $exito;
+       return mysqli_query($db, $consulta);
 }
 
 /**
@@ -279,24 +146,15 @@ function editarNoticia($db, $id, $data) {
  * @params array $tags
  * @return bool
  */
-function grabarTagsParaNoticia($db, $id, $tags) {
+function grabarTagsParaProducto($db, $id, $tags) {
     $consulta = "INSERT INTO noticias_has_tags (id_noticia, id_tag)
                 VALUES ";
-    
-    // Generamos usando la misma estrategia que hicimos en el update
-    // todos los pares de valores para la consulta.
-    $paresValores = [];
     
     foreach($tags as $tag) {
         $tagFiltrado = mysqli_real_escape_string($db, $tag);
         $paresValores[] = "('" . $id . "', '" . $tagFiltrado . "')";
     }
-    
-    // Agregamos todos los pares a la consulta.
     $consulta .= implode(', ', $paresValores);
-    
-    //$exito = mysqli_query($db, $consulta);
-    //return $exito;
     return mysqli_query($db, $consulta);
 }
 
@@ -307,7 +165,7 @@ function grabarTagsParaNoticia($db, $id, $tags) {
  * @param int $id
  * @return array
  */
-function traerTagsDeNoticiaPorId($db, $id) {
+function traerTagsDeProductoPorId($db, $id) {
     $id = mysqli_real_escape_string($db, $id);
     
     $consulta = "SELECT t.* FROM tags t
@@ -322,6 +180,7 @@ function traerTagsDeNoticiaPorId($db, $id) {
     }
     return $salida;
 }
+
 
 
 

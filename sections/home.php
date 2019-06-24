@@ -1,30 +1,38 @@
 <?php
 require 'libraries/data-noticias.php';
-$noticias = traerNoticias($db, 3);
+$productos = traerProducto($db, 10);
 ?>
    <main id="main-content">
-    <section id="home-noticias">
-        <div>
+    <section id="home-productos">
+        <div class="productos-titulo">
             <h2>Lo nuestro</h2>
             <p class="lead">Esto es lo que hacemos.</p>
         </div>
-        <?php
-        foreach($noticias as $unaNoticia):
-        ?>
-            <article class="noticias-item">
-                <a class="noticias-item_link" href="index.php?s=leer-noticia&id=<?= $unaNoticia['id_noticia'];?>">
-                    <div class="noticias-item_content">
-                        <h3><?= $unaNoticia['titulo'];?></h3>
-                        <p><?= $unaNoticia['sinopsis'];?></p>
+        <div class="productos-wrapper">
+            <?php
+            foreach($productos as $producto):
+            ?>
+            <article class="producto">
+                <a class="producto-item_link" href="index.php?s=ver-producto&id=<?= $producto['id_noticia'];?>">
+                <div class="producto-item_content">
+                    <div class="producto-item_texto">
+                        <h3><?= $producto['titulo'];?></h3>
+                        <p><?= $producto['sinopsis'];?></p>
                     </div>
-                    <picture class="noticias-item_imagen">
-                        <source srcset="imgs/<?= str_replace('.jpg', '-big.jpg', $unaNoticia['imagen']);?>" media="all and (min-width: 46.875em)">
-                        <img src="imgs/<?= $unaNoticia['imagen'];?>" alt="<?= $unaNoticia['titulo'];?>">
+                    <picture class="producto-item_imagen">
+                        <source srcset="//unsplash.it/500/500" media="all and (min-width: 46.875em)">
+                        <img src="//unsplash.it/100/100" alt="<?= $producto['titulo'];?>">
+                    <!--
+                        <source srcset="imgs/<?= str_replace('.jpg', '-big.jpg', $producto['imagen']);?>" media="all and (min-width: 46.875em)">
+                        <img src="imgs/<?= $producto['imagen'];?>" alt="<?= $producto['titulo'];?>">
+                    -->
                     </picture>
+                </div>
                 </a>
             </article>
-        <?php
-        endforeach;
-        ?>
+            <?php
+            endforeach;
+            ?>
+        </div>
     </section>
 </main>

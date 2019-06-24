@@ -25,7 +25,7 @@ $inicio = ($cantidad * $p) - $cantidad;
 
 // Leemos las noticias, pasando la conexión (traída del
 // index_santiago.php).
-$noticias = traerNoticias($db, $cantidad, $inicio, $b);
+$noticias = traerProducto($db, $cantidad, $inicio, $b);
 $cantidadTotalDeNoticias = traerCantidadTotalDeNoticias($db, $b);
 
 // Calculamos la cantidad final de páginas.

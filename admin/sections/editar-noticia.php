@@ -11,7 +11,7 @@ if(isset($_SESSION['old_data'])) {
     $errores = $_SESSION['errores'];
     unset($_SESSION['old_data'], $_SESSION['errores']);
 } else {
-    $oldData = traerNoticiaPorId($db, $_GET['id']);
+    $oldData = traerProductoPorId($db, $_GET['id']);
 }
 
 

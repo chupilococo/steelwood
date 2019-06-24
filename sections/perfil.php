@@ -1,13 +1,8 @@
 <?php
-// Como estamos en la sección del perfil, verificamos que
-// solo usuarios autenticados puedan ingresar.
-/*if(!isset($_SESSION['id_usuario']) || empty($_SESSION['id_usuario'])) {
-    header('Location: index_santiago.php?s=login');
-    exit;
-}*/
 require 'libraries/data-usuarios.php';
-redirectIfNotLogged();
+$_SESSION['backUrl']=$_SERVER['HTTP_REFERER'];
 
+redirectIfNotLogged();
 $user = traerUsuarioPorId($db, $_SESSION['id_usuario']);
 ?>
 

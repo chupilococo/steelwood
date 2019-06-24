@@ -27,10 +27,8 @@ if($rta):
 DELETE;
 
     $rta = mysqli_query($db, $query);
-
-    // Si actualicé el usuario y eliminé el token del usuario en password_resets...
     if($rta):
-        header("Location: ../index_santiago.php?s=login");
+        header("Location: ../index.php?s=login");
         die();
     endif;
 endif;

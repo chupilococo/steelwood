@@ -1,7 +1,7 @@
 <?php
 require '../libraries/data-noticias.php';
 
-$noticias = traerNoticias($db);
+$noticias = traerProducto($db);
 ?>
 <div id="main-panel">
     <h1>Administración de Noticias</h1>

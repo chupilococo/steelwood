@@ -1,7 +1,7 @@
 <?php
 
 if(empty($_GET["email"]) || empty($_GET["token"])):
-    header("Location: index_santiago.php");
+    header("Location: index.php");
     die();
 endif;
 
